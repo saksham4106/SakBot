@@ -1,0 +1,31 @@
+plugins {
+    id'application'
+    id'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+mainClassName = "com.saksham.sakbot.SakBot"
+group 'com.saksham4106'
+version '1.0'
+
+def jdaVersion = 'v5.0.0-alpha.5'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+    maven {
+        url "https://m2.dv8tion.net/releases"
+    }
+
+
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation'com.github.DV8FromTheWorld:JDA:v5.0.0-alpha.5'
+    implementation group: 'com.fathzer', name: 'javaluator', version: '3.0.3'
+    implementation 'org.apache.commons:commons-math3:3.6.1'
+}
+
+
+compileJava.options.encoding = 'UTF-8'
