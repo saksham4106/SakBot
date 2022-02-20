@@ -11,7 +11,6 @@ public class Token {
                 return token;
             }
         } catch (Exception ignored) {
-
         }
         return System.getenv("TOKEN");
     }
