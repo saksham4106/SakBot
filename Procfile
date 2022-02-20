@@ -1,2 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar SakBot-1.0-all.jar
-
+worker: java src/main/java/com/saksham/sakbot/SakBot.java

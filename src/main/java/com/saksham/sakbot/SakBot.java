@@ -15,7 +15,7 @@ public class SakBot {
     public static JDA jda;
 
     public static void main(String[] args) throws LoginException {
-        jda = JDABuilder.createDefault("").build();
+        jda = JDABuilder.createDefault(Token.getToken()).build();
         registerCommands();
         jda.addEventListener(new MessageEventListener());
     }
