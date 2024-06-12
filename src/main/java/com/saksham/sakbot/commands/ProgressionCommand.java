@@ -1,13 +1,14 @@
-package com.saksham.sakbot;
+package com.saksham.sakbot.commands;
 
+import com.saksham.sakbot.SakBot;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class ProgressionCommand extends Command{
 
     public ProgressionCommand(){
-        this.commandName = "progression";
-        this.description = "Calculates the Sum and Nth term of an AP";
-        this.inputFormat = SakBot.prefix + commandName + " a=10; d=10; n=20";
+        super("progression",
+                "Calculates the Sum and Nth term of an AP",
+                SakBot.prefix + "progression a=10; d=10; n=20");
     }
 
     private String getValue(String pair){
@@ -15,7 +16,7 @@ public class ProgressionCommand extends Command{
     }
     @Override
     public void onCommandExecuted(MessageReceivedEvent event) {
-        this.content = parseCommand(event);
+        parseCommand(event);
         double start = 0, end = 0, num = 0, sum = 0, nth_term = 0, diff = 0f;
         String[] values = this.content.split(";");
         StringBuilder toFind = new StringBuilder("adnslt");

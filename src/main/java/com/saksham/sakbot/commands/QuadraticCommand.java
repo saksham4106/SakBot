@@ -1,6 +1,7 @@
-package com.saksham.sakbot;
+package com.saksham.sakbot.commands;
 
 import com.fathzer.soft.javaluator.DoubleEvaluator;
+import com.saksham.sakbot.SakBot;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class QuadraticCommand extends Command{
@@ -8,9 +9,9 @@ public class QuadraticCommand extends Command{
     private final DoubleEvaluator eval = new DoubleEvaluator();
 
     public QuadraticCommand(){
-        this.commandName = "quadratic";
-        this.description = "Calculates the roots of the given quadratic equation";
-        this.inputFormat = SakBot.prefix + commandName + " a=1; b=5; c=6";
+        super("quadratic",
+                "Calculates the roots of the given quadratic equation",
+                SakBot.prefix + "quadratic a=1; b=5; c=6" );
     }
 
     private String getValue(String pair){
@@ -19,7 +20,7 @@ public class QuadraticCommand extends Command{
 
     @Override
     public void onCommandExecuted(MessageReceivedEvent event) {
-        this.content = this.parseCommand(event);
+        this.parseCommand(event);
         double a = 0, b = 0, c = 0;
         String[] values = this.content.split(";");
         for (String value : values) {

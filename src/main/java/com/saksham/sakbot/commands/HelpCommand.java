@@ -1,5 +1,6 @@
-package com.saksham.sakbot;
+package com.saksham.sakbot.commands;
 
+import com.saksham.sakbot.SakBot;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -10,14 +11,15 @@ import java.util.stream.Collectors;
 public class HelpCommand extends Command{
 
     public HelpCommand(){
-        this.commandName = "help";
-        this.description = "Get info of Commands";
-        this.inputFormat = SakBot.prefix + commandName + " commandName";
+        super("help",
+                "Get info of commands",
+                SakBot.prefix + "help commandName" );
+
     }
 
     @Override
     public void onCommandExecuted(MessageReceivedEvent event) {
-        this.content = parseCommand(event);
+        parseCommand(event);
         EmbedBuilder eb = new EmbedBuilder()
                 .setColor(new Color(0x80acff));
 

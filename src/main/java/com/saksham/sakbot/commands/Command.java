@@ -1,4 +1,4 @@
-package com.saksham.sakbot;
+package com.saksham.sakbot.commands;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -8,24 +8,30 @@ import java.util.stream.Collectors;
 
 public abstract class Command {
 
-    String commandName = "";
-    String description = "";
-    protected String content = "";
-    String inputFormat;
+    public String commandName;
+    public String description;
+    protected String content;
+    public String inputFormat;
+
+    public Command(String commandName, String description, String inputFormat){
+        this.commandName = commandName;
+        this.description = description;
+        this.inputFormat = inputFormat;
+    }
 
     public String getCommandName() {
         return commandName;
     }
 
-    public String parseCommand(MessageReceivedEvent event){
+    public void parseCommand(MessageReceivedEvent event){
         List<String> msg = new ArrayList<>(List.of(event.getMessage().getContentRaw().split(" ")));
         msg.remove(0);
-        List<String> expression = msg.stream().filter(s -> !s.equals("")).collect(Collectors.toList());
+        List<String> expression = msg.stream().filter(s -> !s.isEmpty()).collect(Collectors.toList());
         StringBuilder expr = new StringBuilder();
         for (String s : expression) {
             expr.append(s);
         }
-        return expr.toString();
+        this.content = expr.toString();
     }
     public abstract void onCommandExecuted(MessageReceivedEvent event);
 

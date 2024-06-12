@@ -1,6 +1,7 @@
-package com.saksham.sakbot;
+package com.saksham.sakbot.commands;
 
 import com.fathzer.soft.javaluator.DoubleEvaluator;
+import com.saksham.sakbot.SakBot;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
@@ -9,14 +10,14 @@ public class LinearPairCommand extends Command{
     private final DoubleEvaluator eval = new DoubleEvaluator();
 
     public LinearPairCommand(){
-        this.commandName = "linear";
-        this.description = "Calculates value of x,y in a pair of linear equations";
-        this.inputFormat = SakBot.prefix + commandName + " 1x -5y = 6\n2x + 4y = -3";
+        super("linear",
+                "Calculates value of x,y in a pair of linear equations",
+                SakBot.prefix + "linear 1x -5y = 6\n2x + 4y = -3");
     }
 
     @Override
     public void onCommandExecuted(MessageReceivedEvent event) {
-        this.content = this.parseCommand(event);
+        this.parseCommand(event);
         String equation1 = this.content.split(System.lineSeparator())[0];
         String equation2 = this.content.split(System.lineSeparator())[1];
         String[] split1 = equation1.split("=");
